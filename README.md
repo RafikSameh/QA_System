@@ -111,7 +111,7 @@ curl -X POST http://localhost:8000/analyze-call \
 python tests/eval.py
 ```
 
-The eval script sends all 4 sample transcripts to the API, validates the JSON schema, and asserts expected outcomes (e.g., the HIPAA call must escalate, the clean call must pass).
+The eval script is a generated script that sends all 4 sample transcripts to the API, validates the JSON schema, and asserts expected outcomes (e.g., the HIPAA call must escalate, the clean call must pass).
 
 ---
 
