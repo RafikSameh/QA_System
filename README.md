@@ -263,3 +263,7 @@ Every analysis logs:
 - Prompt text and raw LLM response (at DEBUG level — set `LOG_LEVEL=DEBUG` for full traces)
 
 Set `LOG_LEVEL=DEBUG` to see full prompts and raw LLM responses during development.
+
+## Author
+**Rafik Sameh Yanni** \
+AI Engineer
