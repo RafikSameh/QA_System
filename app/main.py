@@ -1,8 +1,3 @@
-"""
-Call QA Analysis API — Pain Management & Neurology Clinic
-Entry point for the FastAPI application.
-"""
-
 import time
 import logging
 from contextlib import asynccontextmanager
@@ -40,12 +35,12 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Build a shared analyzer (holds the LLM client + retry logic)
+# Build a shared analyzer
 llm_client = LLMClient(provider=settings.llm_provider, model=settings.llm_model)
 analyzer = CallAnalyzer(llm_client=llm_client)
 
 
-# ── Middleware: request-level timing ──────────────────────────────────────────
+# Middleware: request-level timing
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     start = time.perf_counter()
@@ -54,8 +49,8 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time"] = f"{elapsed:.3f}s"
     return response
 
-
-# ── Endpoints ─────────────────────────────────────────────────────────────────
+############################################################################
+# Endpoints 
 @app.get("/health")
 async def health_check():
     """Simple liveness probe."""
@@ -70,7 +65,6 @@ async def analyze_call(payload: CallTranscript) -> QAAnalysisResult:
     - Detects HIPAA concerns, misinformation, rudeness, protocol violations,
       and positive interactions.
     - Returns agent performance scores plus escalation guidance.
-    - Never invents issues not present in the transcript.
     """
     logger.info(
         "analyze-call | call_id=%s agent=%s dept=%s duration=%ss",
