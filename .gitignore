@@ -3,8 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
-# Environments
 .env
 .venv
 env/
@@ -15,10 +13,6 @@ ENV/
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-.DS_Store
 
 # Environment variables
 .env.local
